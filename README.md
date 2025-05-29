@@ -1,112 +1,48 @@
 # ASR-in-Smart-Home
-SmartHome-ASR is a speech recognition system built on the DeepSpeech2 architecture (originally from Mozilla), trained from scratch with the Fluent Speech Commands Dataset to support smart home applications.
+# Introduction
+SmartHome-ASR is a speech recognition system built base on the DeepSpeech2 architecture (originally from Mozilla), trained from scratch with the [Fluent Speech Commands Voice Dataset](https://www.kaggle.com/datasets/tommyngx/fluent-speech-corpus) to support smart home applications.
 
-📌 Highlights
-🔧 Production-ready: Hệ thống được thiết kế để triển khai dễ dàng trong môi trường thực tế.
+# Architecture Model 
+[1]
+![image](https://github.com/user-attachments/assets/92eba511-d473-4978-8369-553a4b9785f3) 
 
-🧠 Bi-GRU Architecture: Khai thác kiến trúc RNN hai chiều để nắm bắt ngữ cảnh toàn cục.
+Each audio command (.wav file, 16kHz, mono) is transformed into a spectrogram via Short-Time Fourier Transform (STFT), effectively representing intensity and frequency characteristics over time. The spectrograms are then fed into a series of convolutional neural networks (CNNs) to extract local features and reduce noise, followed by five layers of Bidirectional Gated Recurrent Units (Bi-GRU) to capture temporal context in both directions. The output is processed through Dense + ReLU layers and trained using Connectionist Temporal Classification (CTC) Loss with Greedy Search , enabling the model to flexibly map audio feature sequences to character sequences without requiring frame-level alignment. The entire model is well-suited for speech recognition applications in controlling smart home devices
 
-🔤 CTC Loss: Huấn luyện không cần căn chỉnh chính xác từng khung âm thanh với ký tự.
+[2]
 
-📈 Tối ưu hóa cho nhà thông minh: Nhận dạng các lệnh điều khiển như "turn on the lights", "set temperature", v.v.
+![image](https://github.com/user-attachments/assets/c172e7f2-f414-4de3-88b9-26d1bb97e461)
 
-📂 Dataset
-Fluent Speech Commands Dataset
+For more details on the SmartHome-ASR model's architecture and operation refer to the [documentation](https://deepspeech.readthedocs.io/en/v0.6.1/DeepSpeech.html0) [3]. Additionally, a related paper can be found here [in here](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10966154) [4]
+# Dataset
+[Author: Tommy NgX](https://www.kaggle.com/tommyngx)
 
-Ngôn ngữ: Tiếng Anh
+[Fluent Speech Commands Dataset](https://www.kaggle.com/datasets/tommyngx/fluent-speech-corpus) [5]
 
-Dạng dữ liệu: Tập .wav với nhãn dạng câu lệnh
+This dataset contains 97 speakers recording 248 unique phrases, mapping to 31 intents across three slots: action, object, and location. Designed as a benchmark for end-to-end spoken language understanding, it was collected via crowdsourcing in the US and Canada. Participants recorded each phrase twice in random order, with anonymized demographic data included. Audio was validated to remove noisy, inaudible, or incorrect recordings. Licensed under the Fluent Speech Commands Public License.
 
-Ví dụ: "turn on the lights in the kitchen"
-
-Tập huấn luyện có sẵn cho nhiều speaker → đa dạng giọng nói
-
-⚙️ Mô hình
-🔁 Kiến trúc tổng thể
-Feature extraction: STFT → Spectrogram
-
-Encoder: Nhiều tầng Bi-GRU
-
-CTC Loss: Tối ưu hóa học chuỗi không căn chỉnh
-
-<p align="center"> <img src="Picture_1751183842" alt="Bi-GRU Architecture" width="600"/> </p>
-✨ CTC Loss – Connectionist Temporal Classification
-Cho phép huấn luyện không cần gán nhãn từng frame âm thanh với ký tự cụ thể.
-
-Quá trình suy luận:
-
-Dự đoán chuỗi ký tự có cả blank và lặp lại.
-
-Merge duplicates: loại bỏ ký tự lặp liên tiếp.
-
-Remove blanks: loại bỏ ký hiệu blank để tạo ra chuỗi cuối cùng.
-
-<p align="center"> <img src="Picture_1167238156" alt="CTC Explanation" width="600"/> </p>
-📈 Kết quả căn chỉnh (Alignment Example)
-Hệ thống có thể căn chỉnh từ với vùng âm thanh tương ứng.
-
-Hình minh họa vùng phát âm tương ứng cho từng từ (highlight nền màu).
-
-<p align="center"> <img src="Picture_226716643" alt="Waveform Alignment" width="600"/> </p>
-🚀 Cài đặt
-Yêu cầu:
-Python ≥ 3.10
-
-Conda (đề xuất dùng Miniconda)
-
-CUDA 12.1
-
-PyTorch ≥ 2.2.2 + cu121
-
-Libsox (âm thanh)
-
-Các bước:
-bash
-Sao chép
-Chỉnh sửa
-# Clone dự án
+# Quick start 
+You can refer to this notebook to learn how to use it 
+# Raspberry Pi Deployment 
+The trained SmartHome-ASR model is deployed on a Raspberry Pi to enable a fully functional voice-controlled smart home assistant. Voice commands are recognized in real time using the optimized TFLite version of the model. Based on recognized commands, the system can control lights, fans, or other appliances through GPIO-connected relays. It also integrates environmental sensors like the DHT11 to monitor temperature and humidity, and a PIR motion sensor for detecting human presence. Users can interact with the system via a local Tkinter-based GUI, while music playback is supported through VLC. Additionally, the system can control servo motors for mechanical actions such as adjusting blinds or doors, making it a versatile and responsive smart home solution.
+# Clone projecet
 git clone https://github.com/your-username/SmartHome-ASR.git
+
 cd SmartHome-ASR
 
-# Tạo môi trường Conda
-conda create -n smarthome-asr python=3.10
-conda activate smarthome-asr
-
-# Cài đặt phụ thuộc
+# Requirement setting
 pip install -r requirements.txt
 
-# Cài đặt CUDA, Torch (nếu dùng GPU)
-pip install torch==2.2.2+cu121 torchaudio==2.2.2+cu121 -f https://download.pytorch.org/whl/torch_stable.html
+# References 
+https://nvidia.github.io/OpenSeq2Seq/html/speech-recognition/deepspeech2.html [1]
 
-# Cài đặt sox nếu gặp lỗi liên quan
-conda install conda-forge::sox
-🧪 Huấn luyện & Inference
-python
-Sao chép
-Chỉnh sửa
-from deepspeech_model import DeepSpeech2Model
+https://www.researchgate.net/figure/DeepSpeech-2-architecture41_fig23_348706070 [2]
 
-model = DeepSpeech2Model.load_pretrained('models/deepspeech2_fsc.pth')
-result = model.transcribe('audio/turn_on_light.wav')
-print(result['text'])  # Output: turn on the light
-🗂 Cấu trúc thư mục
-bash
-Sao chép
-Chỉnh sửa
-SmartHome-ASR/
-├── data/                   # Dữ liệu đầu vào (.wav, labels)
-├── models/                 # Trọng số mô hình đã huấn luyện
-├── notebooks/              # Phân tích dữ liệu & inference
-├── scripts/                # Script huấn luyện, test
-├── deepspeech_model.py     # Cấu trúc DeepSpeech2
-├── requirements.txt
-└── README.md
-📚 Tài liệu tham khảo
-Mozilla DeepSpeech
+https://deepspeech.readthedocs.io/en/v0.6.1/DeepSpeech.html [3]
 
-Fluent Speech Commands Dataset
+https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10966154 [4]
 
-CTC Loss paper
+https://www.kaggle.com/datasets/tommyngx/fluent-speech-corpus [5]
 
-📌 Giấy phép
-Dự án này được phát hành dưới MIT License.
+https://github.com/mozilla/DeepSpeech 
+# License
+The project is released under the MIT License.
