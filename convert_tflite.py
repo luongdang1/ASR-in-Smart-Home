@@ -14,8 +14,8 @@ from keras import layers
 import tensorflow as tf
 import keras
 
-# khi chạy đổi lại path của file vocab theo máy m nha
-with open("C:/Users/lenovo/Downloads/vocab.txt", "r", encoding="utf-8") as f:
+
+with open("vocab.txt", "r", encoding="utf-8") as f:
     vocabulary = [line.rstrip("\n") for line in f]  # Không dùng .strip()
 
 
