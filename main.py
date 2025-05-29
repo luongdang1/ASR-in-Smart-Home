@@ -1,7 +1,3 @@
-# KHI CHẠY XEM THỬ VERSION KERAS TRÊN MÁY LÀ Ở BAO NHIÊU
-# phải là  vì t build mô hình ở server, KHÔNG CÙNG SERVER LÀ CẤU TRÚC LOAD VÀO BỊ LỖI   
-# standalone keras version: 3.8.0 (trên server) 
-
 import tensorflow as tf
 import librosa
 import numpy as np
