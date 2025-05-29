@@ -1,3 +1,2 @@
 # ASR-in-Smart-Home
-SmartHome-ASR là hệ thống nhận dạng giọng nói được xây dựng trên kiến trúc DeepSpeech2 (gốc từ Mozilla), được huấn luyện từ đầu với Fluent Speech Commands Dataset, nhằm hỗ trợ các ứng dụng nhà thông minh (smart home).
-
+SmartHome-ASR is a speech recognition system built on the DeepSpeech2 architecture (originally from Mozilla), trained from scratch with the Fluent Speech Commands Dataset to support smart home applications.
