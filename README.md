@@ -1,2 +1,3 @@
 # ASR-in-Smart-Home
-Automatic Speech Recognition (ASR) in Smart Homes enables voice control of devices. Users can easily command lights on/off, adjust temperature, or play music, enhancing convenience and efficiency
+SmartHome-ASR là hệ thống nhận dạng giọng nói được xây dựng trên kiến trúc DeepSpeech2 (gốc từ Mozilla), được huấn luyện từ đầu với Fluent Speech Commands Dataset, nhằm hỗ trợ các ứng dụng nhà thông minh (smart home).
+
