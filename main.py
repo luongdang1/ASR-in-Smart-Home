@@ -66,7 +66,6 @@ def build_model(input_dim, output_dim, rnn_layers=5, rnn_units=128):
     model.compile(optimizer=keras.optimizers.Adam(1e-4), loss=CTCLoss)
     return model
 
-
 model = build_model(input_dim=129, output_dim=len(char_to_num.get_vocabulary()), rnn_units=256)
 
 model.load_weights("C:/Users/lenovo/Downloads/best_model.weights.h5")
