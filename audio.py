@@ -1,3 +1,4 @@
+# This file to get real voice and predict 
 import wave
 import pyaudio
 import tensorflow as tf
