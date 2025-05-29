@@ -13,6 +13,8 @@ Each audio command (.wav file, 16kHz, mono) is transformed into a spectrogram vi
 ![image](https://github.com/user-attachments/assets/c172e7f2-f414-4de3-88b9-26d1bb97e461)
 
 For more details on the SmartHome-ASR model's architecture and operation refer to the [documentation](https://deepspeech.readthedocs.io/en/v0.6.1/DeepSpeech.html0) [3]. Additionally, a related paper can be found here [in here](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10966154) [4]
+
+To utilize the pre-trained model, you can use [best_model.weights.h5] and the TFLite format [model.tflite] for efficient deployment.
 # Dataset
 [Author: Tommy NgX](https://www.kaggle.com/tommyngx)
 
@@ -21,7 +23,7 @@ For more details on the SmartHome-ASR model's architecture and operation refer t
 This dataset contains 97 speakers recording 248 unique phrases, mapping to 31 intents across three slots: action, object, and location. Designed as a benchmark for end-to-end spoken language understanding, it was collected via crowdsourcing in the US and Canada. Participants recorded each phrase twice in random order, with anonymized demographic data included. Audio was validated to remove noisy, inaudible, or incorrect recordings. Licensed under the Fluent Speech Commands Public License.
 
 # Quick start 
-You can refer to this notebook to learn how to use it 
+You can refer to [this notebook](https://github.com/luongdang1/ASR-in-Smart-Home/blob/main/asr_speech_recognition.ipynb) to easily learn how to use it
 # Raspberry Pi Deployment 
 The trained SmartHome-ASR model is deployed on a Raspberry Pi to enable a fully functional voice-controlled smart home assistant. Voice commands are recognized in real time using the optimized TFLite version of the model. Based on recognized commands, the system can control lights, fans, or other appliances through GPIO-connected relays. It also integrates environmental sensors like the DHT11 to monitor temperature and humidity, and a PIR motion sensor for detecting human presence. Users can interact with the system via a local Tkinter-based GUI, while music playback is supported through VLC. Additionally, the system can control servo motors for mechanical actions such as adjusting blinds or doors, making it a versatile and responsive smart home solution.
 # Clone projecet
