@@ -35,6 +35,14 @@ cd SmartHome-ASR
 pip install -r requirements.txt
 
 # References 
+"Some of the papers I referred to include:"
+
+Optimizing Speech Recognition for the Edge — [arXiv:1909.12408](https://arxiv.org/abs/1909.12408)
+
+Tiny Transducer: A Highly Efficient Speech Recognition Model for Edge Devices — [arXiv:2101.06856](https://arxiv.org/pdf/2101.06856)
+
+Conformer-Based Speech Recognition on Extreme Edge-Computing Devices — [arXiv:2312.10359](https://arxiv.org/pdf/2312.10359)
+
 https://nvidia.github.io/OpenSeq2Seq/html/speech-recognition/deepspeech2.html [1]
 
 https://www.researchgate.net/figure/DeepSpeech-2-architecture41_fig23_348706070 [2]
