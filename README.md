@@ -14,7 +14,7 @@ Each audio command (.wav file, 16kHz, mono) is transformed into a spectrogram vi
 
 For more details on the SmartHome-ASR model's architecture and operation refer to the [documentation](https://deepspeech.readthedocs.io/en/v0.6.1/DeepSpeech.html0) [3]. Additionally, a related paper can be found here [in here](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10966154) [4]
 
-To utilize the pre-trained model, you can use [best_model.weights.h5] and the TFLite format [model.tflite] for efficient deployment.
+To utilize the pre-trained model, you can use best_model.weights.h5 and the TFLite format model.tflite (for efficient deployment) [in here](https://drive.google.com/drive/folders/1bkAzHO2u74e8Ws2eEOpQODF15PKrQnrR?usp=sharing) .
 # Dataset
 [Author: Tommy NgX](https://www.kaggle.com/tommyngx)
 
