@@ -31,9 +31,6 @@ git clone https://github.com/your-username/SmartHome-ASR.git
 
 cd SmartHome-ASR
 
-# Requirement setting
-pip install -r requirements.txt
-
 # References 
 "Some of the papers I referred to include:"
 
